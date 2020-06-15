@@ -365,7 +365,7 @@ yodaText();
 
 // You'll also need to uncomment this code
 
-// const assert = require('assert');
+const assert = require('assert');
 
 // To run the tests use => mocha <filename> from the command line
 
@@ -388,22 +388,34 @@ countOnce()
 => 1
 */
 
-// describe('Once', () => {
-//   it('returns a function', () => {
-//     const exampleOnce = once(() => {})
-//     assert.equal(typeof exampleOnce, 'function');
-//   });
-//   it('only runs once', () => {
-//     let total = 0;
-//     const count = () => {
-//       return ++total;
-//     }
 
-//     const countOnce = once(count);
-//     assert.equal(countOnce(), 1);
-//     assert.equal(countOnce(), 1);
-//   });
-// });
+function once(f) {
+  let result;
+  return () => {
+    result = result || f();
+    return result;
+  }; 
+  }
+
+
+
+
+describe('Once', () => {
+  it('returns a function', () => {
+    const exampleOnce = once(() => {})
+    assert.equal(typeof exampleOnce, 'function');
+  });
+  it('only runs once', () => {
+    let total = 0;
+    const count = () => {
+      return ++total;
+    }
+
+    const countOnce = once(count);
+    assert.equal(countOnce(), 1);
+    assert.equal(countOnce(), 1);
+  });
+});
 
 // 26.
 
