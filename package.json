@@ -1,0 +1,23 @@
+{
+  "name": "javascript-review-one",
+  "version": "1.0.0",
+  "description": "",
+  "main": "javascript-review.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jishan33/javascript-review-one.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jishan33/javascript-review-one/issues"
+  },
+  "homepage": "https://github.com/jishan33/javascript-review-one#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}

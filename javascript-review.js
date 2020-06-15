@@ -124,8 +124,12 @@ function myFunc(...numbers) {
 // 13.
 // What is a package.json? What is it similar to when comparing it to ruby?
 
-// 14.
+// All npm package contain a file in the root, called package.json. This file is used to handle a project's dependencies and give npm information to identify project, ususally it holds variious metadata relevant to a project.
 
+// It is similar to a gemspec which describes the functionality of the package and lists all the dependencies.
+
+
+// 14.
 // a. 
 // run the following command
 // npm init -y
@@ -134,28 +138,54 @@ function myFunc(...numbers) {
 // Install the package that allows us to get user input in node
 // Store the result of the user input in a variable name then console.log the value of the variable on the subsequent line 
 
+// let readlineSync = require('readline-sync');
+// var userName = readlineSync.question(' Hello, what\'s your name? ');
+// console.log('Welcome ' + userName + '^^');
+
+
 // 15.
 
 // a.
 // Define a function called addNum with that takes two number arguments. In this function simply return the addition of these numbers. 
 
+function addNum(num1 , num2) {
+  return num1 + num2;
+}
+
 // b.
 // Write a second function called numsPlusFunct that takes three arguments, two numbers and a function. Inside numsPlusFunct call the function that is passed as an argument, and pass the two number arguments to this function. numsPlusFunct will return an object where the first property has the value returned from that function call, and the second property is a string. 
+
+function numsPlusFunct(num1, num2, cb) {
+  const string = 'The final number is';
+  return  string + cb(num1,num2);
+}
+
 
 // c.
 // You have now made two functions. Call the numsPlusFunct and pass addNum as the appropriate argument. 
 
-// 16.
+// console.log(numsPlusFunct(1,2, addNum))
 
+
+// 16.
 // Define a .txt file and put this text into it => "hello world"
 // Using the fs module in node read this text from the file into this program and console.log it
+const fs = require('fs');
+let sample = fs.createWriteStream('sample.txt');
+
+sample.write("hello world");
+sample.end();
+
 
 // 17.
-
 // What is the difference between synchronous and asynchronous code? Name one way that JS handles asynchronous code. 
 
-// 18.
+//Asynchromous programming is a method of programming that allows more than one task to be executed at the same time.
 
+// async is added to functions to tell them to return a promise rather than returnning the value directly.
+
+
+// 18.
 // What is fetch and how does it relate to AJAX? Give an example of how you would use it. What does fetch return? Give a very basic example of fetch.
 
 // 19.
