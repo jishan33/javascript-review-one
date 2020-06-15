@@ -169,8 +169,6 @@ sample.end();
 //   console.log('Saved!');
 // });
 
-
-
 // 17.
 // What is the difference between synchronous and asynchronous code? Name one way that JS handles asynchronous code.
 
@@ -182,7 +180,7 @@ sample.end();
 // What is fetch and how does it relate to AJAX? Give an example of how you would use it. What does fetch return? Give a very basic example of fetch.
 
 //Fetch is a Web API and works on broswers. This API was developed to make AJAx requests easier. and it returns a promise. (Asynchronous JavaScript and XML = AJAX)
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
 // fetch("https://api.chucknorris.io/jokes/random")
 //   .then((res) => res.json())
@@ -192,33 +190,32 @@ const fetch = require('node-fetch');
 // 19.
 // A JS object looks like this: const southernField = { location: “upper”, crop: “sorghum”, watered: false }. Use destructuring to store the value of watered in a variable.
 
-const southernField = { 
-  location: "upper", 
-  crop: "sorghum", 
-  watered: false 
-}; 
+const southernField = {
+  location: "upper",
+  crop: "sorghum",
+  watered: false,
+};
 
 const status = southernField.watered;
 // console.log(status);
 
-const {watered} = southernField;
+const { watered } = southernField;
 // console.log(watered);
-
 
 // 20.
 // a.
 // Uncomment the code below.
 
-let newNum = 1
+let newNum = 1;
 
 const myFunc = (num, callback) => {
-  newNum *= num
-  callback(newNum)
-}
+  newNum *= num;
+  callback(newNum);
+};
 
 myFunc(10, (sum) => {
-  console.log(sum)
-})
+  console.log(sum);
+});
 
 // b.
 // Explain in your own words how this code works. For example you could start with something like:
@@ -226,8 +223,6 @@ myFunc(10, (sum) => {
 // myFunc take a nummber and a callback funciion arguments. the number muiltply the newNume  and passed it as an argument in the callback function and invoke the callback function.
 
 // call the myFunc function with a number of 10 and an implicit function to display the argument passed in the callback function on the console.
-
-
 
 // 21.
 // You might remember the .times method in ruby
@@ -245,14 +240,34 @@ myFunc(10, (sum) => {
 // You should see 5 outputs
 
 function times(num, cb) {
-  for (let i = 1; i <= num; i++)
-    cb();
+  for (let i = 1; i <= num; i++) cb();
 }
-times(5,()=> {console.log('callback')})
-
+// times(5, () => {
+//   console.log("callback");
+// });
 
 // 22.
 // Define a Person class, the constructor should take name as an argument and set the name to the this, the class should have a prototype method sayHi() that simply outputs console.log("hello")
+
+class Person {
+  constructor(name) {
+    this.name = name;
+    this.age;
+    this.height;
+  }
+  sayHi() {
+    console.log("hello");
+  }
+  addAgeAndHeight(age, height) {
+    this.age = age;
+    this.height = height;
+  }
+}
+
+const p = new Person("John");
+p.addAgeAndHeight(32, 193);
+// p.sayHi();
+// console.log(p);
 
 // Implement another prototype method addAgeAndHeight() for your class that takes in age and height (in cms) as arguments (both number type) and adds these arguments as attributes to your person object
 
@@ -268,11 +283,35 @@ times(5,()=> {console.log('callback')})
 
 // Define a function named waitBeforeSum that takes 2 numbers as arguments. Your function should sum these numbers together but only after waiting for 4 seconds inside of a setTimeout.
 
+function waitBeforeSum(num1, num2) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (typeof num1 === "number" && typeof num2 === "number") {
+        resolve(num1 + num2);
+      }
+      reject("It is not a number");
+    }, 4000);
+  });
+}
+
+// waitBeforeSum(11, 11)
+//   .then((value) => console.log(value))
+//   .catch((err) => console.log(err));
+
+
 // What do we need to use to access the value in the setTimeout only after the 4 seconds? Write the code to achieve this.
 
 // When we invoke waitBeforeSum we'll have two different methods we can chain to our promise to avoid getting a pending promise. What are these 2 methods?
 
 // Define another function named accessSum and make it an async function. Using the await keyword call waitBeforeSum inside of the accessSum function and store the resolve in a variable called result. console.log the result inside of the async function
+
+const accessSum = async() => {
+  const result =  waitBeforeSum(10,20);
+  await result;
+  console.log(result);
+}
+
+accessSum();
 
 // Add a try and catch block to your accessSum function, make it go into the catch when the sum is greater than 10, when you console.log the the error that you get as a parameter in the catch it should say 'the sum was greater than 10'
 
