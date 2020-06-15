@@ -146,14 +146,17 @@ function addNum(num1, num2) {
 // Write a second function called numsPlusFunct that takes three arguments, two numbers and a function. Inside numsPlusFunct call the function that is passed as an argument, and pass the two number arguments to this function. numsPlusFunct will return an object where the first property has the value returned from that function call, and the second property is a string.
 
 function numsPlusFunct(num1, num2, cb) {
-  const string = "The final number is";
-  return string + cb(num1, num2);
+  
+  return {
+    result: cb(num1, num2),
+    math: 'is awesome!!!'
+    };
 }
 
 // c.
 // You have now made two functions. Call the numsPlusFunct and pass addNum as the appropriate argument.
 
-// console.log(numsPlusFunct(1,2, addNum))
+// console.log(numsPlusFunct(1,2, addNum));
 
 // 16.
 // Define a .txt file and put this text into it => "hello world"
@@ -350,7 +353,7 @@ const yodaText = async() => {
   }
 }
  
-yodaText();
+// yodaText();
 
 
 // 🎉🎉🎉🎉🎉🎉
@@ -432,20 +435,28 @@ _.countBy([1, 2, 3, 4, 5], (num) => {
 => {odd: 3, even: 2}
 */
 
-// describe('Count By', () => {
-//   it('can group true/false', () => {
-//     let grouped = countBy([1, 2, 3, 4, 5], (num) => num % 2 === 0);
-//     assert.equal(grouped.true, 2);
-//     assert.equal(grouped.false, 3);
-//   })
-//   it('can group lists', () => {
-//     const list = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
-//     const grouped = countBy(list, (numWord) => numWord.length);
-//     assert.equal(grouped['3'], 4);
-//     assert.equal(grouped['4'], 3);
-//     assert.equal(grouped['5'], 3);
-//   })
-// });
+function countBy(array, cb) {
+  let result = {};
+  for(let i of array) {
+    let key = cb(i);
+    result[key] = (result[key] || 0) + 1;
+  }
+  return result;
+ }
+describe('Count By', () => {
+  it('can group true/false', () => {
+    let grouped = countBy([1, 2, 3, 4, 5], (num) => num % 2 === 0);
+    assert.equal(grouped.true, 2);
+    assert.equal(grouped.false, 3);
+  })
+  it('can group lists', () => {
+    const list = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+    const grouped = countBy(list, (numWord) => numWord.length);
+    assert.equal(grouped['3'], 4);
+    assert.equal(grouped['4'], 3);
+    assert.equal(grouped['5'], 3);
+  })
+});
 
 // 27.
 
@@ -488,3 +499,5 @@ _.findLastIndex(users, {
 //     assert.equal(result, 2)
 //   })
 // });
+
+
