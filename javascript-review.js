@@ -298,20 +298,25 @@ function waitBeforeSum(num1, num2) {
 //   .then((value) => console.log(value))
 //   .catch((err) => console.log(err));
 
-
 // What do we need to use to access the value in the setTimeout only after the 4 seconds? Write the code to achieve this.
 
 // When we invoke waitBeforeSum we'll have two different methods we can chain to our promise to avoid getting a pending promise. What are these 2 methods?
 
 // Define another function named accessSum and make it an async function. Using the await keyword call waitBeforeSum inside of the accessSum function and store the resolve in a variable called result. console.log the result inside of the async function
 
-const accessSum = async() => {
-  const result =  waitBeforeSum(10,20);
-  await result;
-  console.log(result);
-}
+const accessSum = async () => {
+  try {
+    const result = waitBeforeSum(10, 20);
+    await result;
+    if(result < 10)
+    console.log(result);
+    throw new Error('the sum was greater than 10');
+  } catch (err) {
+    console.log(err.message);
+  }
+};
 
-accessSum();
+// accessSum();
 
 // Add a try and catch block to your accessSum function, make it go into the catch when the sum is greater than 10, when you console.log the the error that you get as a parameter in the catch it should say 'the sum was greater than 10'
 
@@ -324,10 +329,29 @@ accessSum();
 // Using the following API endpoint access the Australian flag svg link and console.log it
 // => https://restcountries.eu/rest/v2/all
 
+// fetch('https://restcountries.eu/rest/v2/all')
+//   .then((response) => response.json())
+//   .then((data) => console.log(data))
+//   .catch((err) => console.log(err));
+
 // c.
 // Using the following API endpoint console.log the yoda text generated from this english phrase "Master Obiwan has lost a planet"
 // Hint: you don't need to pay for a subscription
 // => https://funtranslations.com/api/yoda
+
+const yodaText = async() => {
+  try {
+    const response = await fetch('https://api.funtranslations.com/translate/yoda.json?text=Master%20Obiwan%20has%20lost%20a%20planet.')
+    const data = await response.json()
+    console.log(data);
+    
+  } catch (err) {
+    console.log(err.message)
+  }
+}
+ 
+yodaText();
+
 
 // 🎉🎉🎉🎉🎉🎉
 
