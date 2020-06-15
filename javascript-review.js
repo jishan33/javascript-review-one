@@ -146,11 +146,10 @@ function addNum(num1, num2) {
 // Write a second function called numsPlusFunct that takes three arguments, two numbers and a function. Inside numsPlusFunct call the function that is passed as an argument, and pass the two number arguments to this function. numsPlusFunct will return an object where the first property has the value returned from that function call, and the second property is a string.
 
 function numsPlusFunct(num1, num2, cb) {
-  
   return {
     result: cb(num1, num2),
-    math: 'is awesome!!!'
-    };
+    math: "is awesome!!!",
+  };
 }
 
 // c.
@@ -311,9 +310,8 @@ const accessSum = async () => {
   try {
     const result = waitBeforeSum(10, 20);
     await result;
-    if(result < 10)
-    console.log(result);
-    throw new Error('the sum was greater than 10');
+    if (result < 10) console.log(result);
+    throw new Error("the sum was greater than 10");
   } catch (err) {
     console.log(err.message);
   }
@@ -342,19 +340,19 @@ const accessSum = async () => {
 // Hint: you don't need to pay for a subscription
 // => https://funtranslations.com/api/yoda
 
-const yodaText = async() => {
+const yodaText = async () => {
   try {
-    const response = await fetch('https://api.funtranslations.com/translate/yoda.json?text=Master%20Obiwan%20has%20lost%20a%20planet.')
-    const data = await response.json()
+    const response = await fetch(
+      "https://api.funtranslations.com/translate/yoda.json?text=Master%20Obiwan%20has%20lost%20a%20planet."
+    );
+    const data = await response.json();
     console.log(data);
-    
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
   }
-}
- 
-// yodaText();
+};
 
+// yodaText();
 
 // 🎉🎉🎉🎉🎉🎉
 
@@ -368,7 +366,7 @@ const yodaText = async() => {
 
 // You'll also need to uncomment this code
 
-const assert = require('assert');
+const assert = require("assert");
 
 // To run the tests use => mocha <filename> from the command line
 
@@ -391,34 +389,30 @@ countOnce()
 => 1
 */
 
-
 function once(f) {
   let result;
   return () => {
     result = result || f();
     return result;
-  }; 
-  }
+  };
+}
 
+// describe('Once', () => {
+//   it('returns a function', () => {
+//     const exampleOnce = once(() => {})
+//     assert.equal(typeof exampleOnce, 'function');
+//   });
+//   it('only runs once', () => {
+//     let total = 0;
+//     const count = () => {
+//       return ++total;
+//     }
 
-
-
-describe('Once', () => {
-  it('returns a function', () => {
-    const exampleOnce = once(() => {})
-    assert.equal(typeof exampleOnce, 'function');
-  });
-  it('only runs once', () => {
-    let total = 0;
-    const count = () => {
-      return ++total;
-    }
-
-    const countOnce = once(count);
-    assert.equal(countOnce(), 1);
-    assert.equal(countOnce(), 1);
-  });
-});
+//     const countOnce = once(count);
+//     assert.equal(countOnce(), 1);
+//     assert.equal(countOnce(), 1);
+//   });
+// });
 
 // 26.
 
@@ -437,26 +431,26 @@ _.countBy([1, 2, 3, 4, 5], (num) => {
 
 function countBy(array, cb) {
   let result = {};
-  for(let i of array) {
+  for (let i of array) {
     let key = cb(i);
     result[key] = (result[key] || 0) + 1;
   }
   return result;
- }
-describe('Count By', () => {
-  it('can group true/false', () => {
-    let grouped = countBy([1, 2, 3, 4, 5], (num) => num % 2 === 0);
-    assert.equal(grouped.true, 2);
-    assert.equal(grouped.false, 3);
-  })
-  it('can group lists', () => {
-    const list = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
-    const grouped = countBy(list, (numWord) => numWord.length);
-    assert.equal(grouped['3'], 4);
-    assert.equal(grouped['4'], 3);
-    assert.equal(grouped['5'], 3);
-  })
-});
+}
+// describe('Count By', () => {
+//   it('can group true/false', () => {
+//     let grouped = countBy([1, 2, 3, 4, 5], (num) => num % 2 === 0);
+//     assert.equal(grouped.true, 2);
+//     assert.equal(grouped.false, 3);
+//   })
+//   it('can group lists', () => {
+//     const list = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+//     const grouped = countBy(list, (numWord) => numWord.length);
+//     assert.equal(grouped['3'], 4);
+//     assert.equal(grouped['4'], 3);
+//     assert.equal(grouped['5'], 3);
+//   })
+// });
 
 // 27.
 
@@ -476,28 +470,41 @@ _.findLastIndex(users, {
 => 3
 */
 
-// let result;
-// describe('Find Last Index', () => {
-//   it('finds the last index', () => {
-//     const objects = [
-//       {a: 0, b: 0},
-//       {a: 1, b: 1},
-//       {a: 2, b: 2},
-//       {a: 0, b: 0}
-//     ];
-//     result = findLastIndex(objects, {a: 0});
-//     assert.equal(result, 3);
-//   })
-//   it('also finds last index', () => {
-//     const dogs = [
-//       {name: 'tilly', age: 5},
-//       {name: 'sally', age: 10},
-//       {name: 'rex', age: 10},
-//       {name: 'macy', age: 4}
-//     ];
-//     result = findLastIndex(dogs, {age: 10});
-//     assert.equal(result, 2)
-//   })
-// });
+function findLastIndex(object, target) {
+  const result = []; 
+  const key = Object.keys(target);
+
+  object.forEach((item, index) => {
+    for (let keys in item) {
+      if (keys === key[0] && item[keys] === target[key]) {
+        result.push(index);
+      }
+    }
+  });
+  return result[result.length -1];
+}
 
 
+let result;
+describe('Find Last Index', () => {
+  it('finds the last index', () => {
+    const objects = [
+      {a: 0, b: 0},
+      {a: 1, b: 1},
+      {a: 2, b: 2},
+      {a: 0, b: 0}
+    ];
+    result = findLastIndex(objects, {a: 0});
+    assert.equal(result, 3);
+  })
+  it('also finds last index', () => {
+    const dogs = [
+      {name: 'tilly', age: 5},
+      {name: 'sally', age: 10},
+      {name: 'rex', age: 10},
+      {name: 'macy', age: 4}
+    ];
+    result = findLastIndex(dogs, {age: 10});
+    assert.equal(result, 2)
+  })
+});
