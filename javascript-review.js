@@ -4,55 +4,124 @@
 
 // Create an object that has four properties. One property should be set so that the value is a number, another property set to a string, the third to an array, and the fourth to a function. This function should simply console.log the value of the first property.
 
+const movie = {
+  title: 'The matrix',
+  year: '1999',
+  cast: ['Keanu Reeves', 'Carrie-Anne Moss', 'Laurence FishBurne'],
+  showTitle: function(){
+    console.log(this.title)
+  }
+}
+
+// movie.showTitle();
+
 // 2.
 
 // Write a constructor function named Car that takes one argument. It should use that argument to set the brand attribute of the car object. There should be a second attribute that stores the value for colour but this should be explicitly set to ‘red’. 
 
 // Note that a constructor function is the old school syntax that was used in javascript before the sugar class syntax came along in ES6. Don't use the sugar syntax for this question! 
 
+function Car(brand, color = 'red'){
+  this.brand = brand;
+  this.color = color;
+}
+
+const c = new Car('tesla')
+// console.log(c.color)
+// console.log(c.brand)
+
+
 // 3.
 
 // Can you access variables defined outside of functions within the scope of functions in JS? Show a simple example of this being used? (Define a constant in global scope and use that in a very simple function.)
+
+const a = 1;
+function show() {
+  console.log(a)
+}
+
+// show();
 
 // 4.
 
 // What two ways can be used to access the properties of objects in JS? Give examples of both (although assume the objects have been defined).
 
+// dot notation
+console.log(movie.year);
+// bracket notation
+console.log(movie['year']);
+
+
 // 5.
 
 // What is JSON? Be clear but concise.
+
+// JavaScript Object Notation => a lightweight format for sorting and transporting data. 
 
 // 6.
 
 // What is a callback function?
 
+// A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete action.
+
+
 // 7.
 
 // Define a function with that takes two number arguments and a callback. The function will add the two numbers and pass them to the callback as an argument. Now call this function and in the callback simply console.log out the argument that has been passed through.
 
-// 8.
 
+function showAddition(num1, num2, cb){
+ let answer =  num1 + num2;
+
+ if (cb) {
+   return cb(answer);
+ }
+ return answer;
+}
+
+function display(answer) {
+  return answer;
+}
+
+const b = showAddition(1, 1, display() )
+console.log(b)
+
+// 8.
 // Why do we use promises?
 
-// 9.
+// use promises to fix callback limitations (callback hell)
 
+
+// 9.
 // What are the two functions at our disposal if we are defining our own promise?
 // Hint: They're in the new Promise callback function as parameters. 
 
-// 10.
+// resolve and reject
 
+// 10.
 // What's the different between the rest and spread syntax?
 
-// 11. 
+// Rest operator is used to form and array with any number of arguments.
+//Spread operator is to show the values from an array which is opposite to the rest operator. 
 
-// Define a function myFunc(), it should take 3 number arguments, use the rest syntax in the myFunc parameters and console.log out the value generated from the rest. 
+
+// 11. 
+// Define a function myFunc(), it should take 3 number arguments, use the rest syntax in the myFunc parameters and console.log out the value generated from the rest.
+
+function myFunc(...numbers) {
+    console.log(numbers)
+}
+
+// myFunc(1,2,3);
+
 
 // 12.
-
 // What is a javascript package manager? Name the 2 main package managers
 
-// 13.
+// Npm and Yarn
 
+
+// 13.
 // What is a package.json? What is it similar to when comparing it to ruby?
 
 // 14.
